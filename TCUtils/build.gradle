@@ -1,13 +1,12 @@
 apply plugin: 'com.android.library'
 
-
 ext {
     bintrayRepo = 'maven'
     bintrayName = 'TCUtils'
 
     publishedGroupId = 'com.tcleard.utils'
-    libraryName = 'tcutils'
-    artifact = 'tcutils'
+    libraryName = 'TCUtils'
+    artifact = 'TCUtils'
 
     libraryDescription = 'TCUtils'
 
