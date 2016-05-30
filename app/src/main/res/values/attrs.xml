@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TCActionBar">
+        <attr name="abTitleColor" format="color"/>
+        <attr name="abTintColor" format="color"/>
+    </declare-styleable>
+</resources>

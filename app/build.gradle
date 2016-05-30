@@ -1,0 +1,53 @@
+apply plugin: 'com.android.library'
+
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'TCUtils'
+
+    publishedGroupId = 'com.tcleard.utils'
+    libraryName = 'tcutils'
+    artifact = 'tcutils'
+
+    libraryDescription = 'TCUtils'
+
+    siteUrl = 'https://github.com/TCleard/WidgetUtils'
+    gitUrl = 'https://github.com/TCleard/WidgetUtils.git'
+
+    libraryVersion = '1.0.0'
+
+    developerId = 'TCleard'
+    developerName = 'Tanguy Cleard'
+    developerEmail = 'tanguy.cleard@gmail.com'
+
+    licenseName = 'MIT License (MIT)'
+    licenseUrl = 'opensource.org/licenses/MIT'
+    allLicenses = ["MIT"]
+}
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.2.1'
+}
+
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'

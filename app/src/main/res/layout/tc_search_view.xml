@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="@dimen/tc_search_view_height"
+              android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="@dimen/tc_search_view_button_size"
+        android:layout_height="@dimen/tc_search_view_button_size"
+        android:background="@drawable/dark_ripple_background"
+        android:padding="@dimen/tc_search_view_button_padding"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_search"
+        android:tint="@color/black"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/query"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@+id/button_layout"
+            android:singleLine="true"/>
+
+        <LinearLayout
+            android:id="@+id/button_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/clear"
+                android:layout_width="@dimen/tc_search_view_close_button_size"
+                android:layout_height="@dimen/tc_search_view_close_button_size"
+                android:layout_gravity="center"
+                android:background="@drawable/dark_ripple_background"
+                android:padding="@dimen/tc_search_view_close_button_padding"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_close"
+                android:tint="@color/black"/>
+
+            <ImageButton
+                android:id="@+id/go"
+                android:layout_width="@dimen/tc_search_view_button_size"
+                android:layout_height="@dimen/tc_search_view_button_size"
+                android:background="@drawable/dark_ripple_background"
+                android:padding="@dimen/tc_search_view_button_padding"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_go"
+                android:tint="@color/black"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>
