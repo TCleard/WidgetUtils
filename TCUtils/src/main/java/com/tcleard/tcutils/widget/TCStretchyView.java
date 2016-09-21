@@ -2,16 +2,20 @@ package com.tcleard.tcutils.widget;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.os.Build;
 import android.support.annotation.FloatRange;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.animation.Animation;
-import android.view.animation.BaseInterpolator;
-import android.view.animation.OvershootInterpolator;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.Interpolator;
 import android.view.animation.Transformation;
 import android.widget.FrameLayout;
+
+import com.tcleard.tcutils.R;
+import com.tcleard.tcutils.utils.TCStretchyInterpolator;
 
 /**
  * Created by geckoz on 13/03/16.
@@ -24,32 +28,39 @@ public class TCStretchyView extends FrameLayout {
     private float _startY;
 
     private float _resistance = 1.7f;
-    private BaseInterpolator _interpolator = new OvershootInterpolator();
+    private int _animationDuration = 300;
+    private Interpolator _interpolator = new DecelerateInterpolator();
 
     private OnStretchingListener _onStretchingListener;
 
     public TCStretchyView(Context context) {
         super(context);
-        init();
+        init(null);
     }
 
     public TCStretchyView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init();
+        init(attrs);
     }
 
     public TCStretchyView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init();
+        init(attrs);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public TCStretchyView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
-        init();
+        init(attrs);
     }
 
-    private void init() {
+    private void init(AttributeSet attrs) {
+        TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.TCStretchyView, 0, 0);
+        if (a != null) {
+            _resistance = a.getFloat(R.styleable.TCStretchyView_resistance, _resistance);
+            _animationDuration = a.getInt(R.styleable.TCStretchyView_backAnimationDuration, _animationDuration);
+            _interpolator = TCStretchyInterpolator.getInterpolator(a.getInt(R.styleable.TCStretchyView_backAnimationInterpolator, TCStretchyInterpolator.LINEAR.value));
+        }
         post(new Runnable() {
             @Override
             public void run() {
@@ -66,7 +77,7 @@ public class TCStretchyView extends FrameLayout {
         }
     }
 
-    public void setInterpolator(BaseInterpolator interpolator) {
+    public void setInterpolator(Interpolator interpolator) {
         _interpolator = interpolator;
     }
 
@@ -115,7 +126,7 @@ public class TCStretchyView extends FrameLayout {
             }
         };
         animation.setInterpolator(_interpolator);
-        animation.setDuration(600);
+        animation.setDuration(_animationDuration);
         startAnimation(animation);
     }
 

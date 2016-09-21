@@ -7,7 +7,7 @@ import android.support.annotation.DimenRes;
  * Created by geckoz on 13/03/16.
  */
 
-public class Configuration {
+public class TCActionBarConfiguration {
 
     private String _title;
     private com.tcleard.tcutils.widget.actionbar.TCActionBarButton _leftButton, _rightButton1, _rightButton2;
@@ -23,7 +23,7 @@ public class Configuration {
         return _title;
     }
 
-    public Configuration setTitle(String title) {
+    public TCActionBarConfiguration setTitle(String title) {
         _title = title;
         return this;
     }
@@ -32,7 +32,7 @@ public class Configuration {
         return _leftButton;
     }
 
-    public Configuration setLeftButton(com.tcleard.tcutils.widget.actionbar.TCActionBarButton leftButton) {
+    public TCActionBarConfiguration setLeftButton(com.tcleard.tcutils.widget.actionbar.TCActionBarButton leftButton) {
         _leftButton = leftButton;
         return this;
     }
@@ -41,7 +41,7 @@ public class Configuration {
         return _rightButton1;
     }
 
-    public Configuration setRightButton1(com.tcleard.tcutils.widget.actionbar.TCActionBarButton rightButton1) {
+    public TCActionBarConfiguration setRightButton1(com.tcleard.tcutils.widget.actionbar.TCActionBarButton rightButton1) {
         _rightButton1 = rightButton1;
         return this;
     }
@@ -50,7 +50,7 @@ public class Configuration {
         return _rightButton2;
     }
 
-    public Configuration setRightButton2(com.tcleard.tcutils.widget.actionbar.TCActionBarButton rightButton2) {
+    public TCActionBarConfiguration setRightButton2(com.tcleard.tcutils.widget.actionbar.TCActionBarButton rightButton2) {
         _rightButton2 = rightButton2;
         return this;
     }
@@ -59,7 +59,7 @@ public class Configuration {
         return _titleColor;
     }
 
-    public Configuration setTitleColor(@ColorRes Integer textColor) {
+    public TCActionBarConfiguration setTitleColor(@ColorRes Integer textColor) {
         _titleColor = textColor;
         return this;
     }
@@ -68,7 +68,7 @@ public class Configuration {
         return _tintColor;
     }
 
-    public Configuration setTintColor(@ColorRes Integer tintColor) {
+    public TCActionBarConfiguration setTintColor(@ColorRes Integer tintColor) {
         _tintColor = tintColor;
         return this;
     }
@@ -77,7 +77,7 @@ public class Configuration {
         return _backgroundColor;
     }
 
-    public Configuration setBackgroundColor(@ColorRes Integer backgroundColor) {
+    public TCActionBarConfiguration setBackgroundColor(@ColorRes Integer backgroundColor) {
         _backgroundColor = backgroundColor;
         return this;
     }
@@ -86,7 +86,7 @@ public class Configuration {
         return _rippleColor;
     }
 
-    public Configuration setRippleColor(TCActionBar.RippleColor rippleColor) {
+    public TCActionBarConfiguration setRippleColor(TCActionBar.RippleColor rippleColor) {
         _rippleColor = rippleColor;
         return this;
     }
@@ -95,7 +95,7 @@ public class Configuration {
         return _buttonPadding;
     }
 
-    public Configuration setButtonPadding(@DimenRes Integer buttonPadding) {
+    public TCActionBarConfiguration setButtonPadding(@DimenRes Integer buttonPadding) {
         _buttonPadding = buttonPadding;
         return this;
     }

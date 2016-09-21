@@ -8,7 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
-import com.tcleard.tcutils.utils.ScrollUtils;
+import com.tcleard.tcutils.utils.TCScrollUtils;
 
 import java.util.ArrayList;
 
@@ -46,7 +46,7 @@ public class TCListView extends ListView {
         }
         int scroll = (c == null ? 0
                 : ((-c.getTop()) + -getFirstVisiblePosition() * c.getHeight())
-                + (getFirstVisiblePosition() * headerHeight));
+                + headerHeight);
         Log.e("TAG", scroll + " " + headerHeight + " " + getFirstVisiblePosition());
         return scroll;
     }
@@ -73,11 +73,11 @@ public class TCListView extends ListView {
         return super.removeHeaderView(v);
     }
 
-    public void setOnScrollListener(ScrollUtils.OnScrollListener scrollListener) {
-        ScrollUtils.setOnScrollListener(this, scrollListener);
+    public void setOnScrollListener(TCScrollUtils.OnScrollListener scrollListener) {
+        TCScrollUtils.setOnScrollListener(this, scrollListener);
     }
 
-    public void setOnScrollDirectionChangedListener(ScrollUtils.OnScrollDirectionChangedListener directionChangedListener) {
-        ScrollUtils.setOnScrollDirectionChangedListener(this, directionChangedListener);
+    public void setOnScrollDirectionChangedListener(TCScrollUtils.OnScrollDirectionChangedListener directionChangedListener) {
+        TCScrollUtils.setOnScrollDirectionChangedListener(this, directionChangedListener);
     }
 }

@@ -15,12 +15,12 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 
 import com.tcleard.tcutils.R;
-import com.tcleard.tcutils.utils.ScrollUtils;
+import com.tcleard.tcutils.utils.TCScrollUtils;
 
 /**
  * Created by geckoz on 14/03/16.
  */
-public class TCParallaxListView extends FrameLayout implements View.OnTouchListener, ScrollUtils.OnScrollListener {
+public class TCParallaxListView extends FrameLayout implements View.OnTouchListener, TCScrollUtils.OnScrollListener {
 
     private static final String TAG = TCParallaxListView.class.getName();
 

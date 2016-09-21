@@ -4,4 +4,29 @@
         <attr name="abTitleColor" format="color"/>
         <attr name="abTintColor" format="color"/>
     </declare-styleable>
+
+    <attr name="resistance" format="float"/>
+    <attr name="backAnimationDuration" format="integer"/>
+    <attr name="backAnimationInterpolator" format="enum">
+        <enum name="linear" value="0"/>
+        <enum name="accelerate" value="1"/>
+        <enum name="decelerate" value="2"/>
+        <enum name="accelerateDecelerate" value="3"/>
+        <enum name="anticipate" value="4"/>
+        <enum name="overshoot" value="5"/>
+        <enum name="anticipateOvershoot" value="6"/>
+        <enum name="bounce" value="7"/>
+    </attr>
+
+    <declare-styleable name="TCStretchyView">
+        <attr name="resistance"/>
+        <attr name="backAnimationInterpolator"/>
+        <attr name="backAnimationDuration"/>
+    </declare-styleable>
+
+    <declare-styleable name="TCParallaxScrollView">
+        <attr name="resistance"/>
+        <attr name="backAnimationInterpolator"/>
+        <attr name="backAnimationDuration"/>
+    </declare-styleable>
 </resources>

@@ -4,7 +4,6 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
@@ -68,7 +67,7 @@ public class TCActionBar extends FrameLayout {
         super.onMeasure(widthMeasureSpec, getDimen(R.dimen.tc_action_bar_height));
     }
 
-    public void setConfiguration(Configuration configuration) {
+    public void setConfiguration(TCActionBarConfiguration configuration) {
         if (configuration.getTitle() != null) {
             setTitle(configuration.getTitle());
         }

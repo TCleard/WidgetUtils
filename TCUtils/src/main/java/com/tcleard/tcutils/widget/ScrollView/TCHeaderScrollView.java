@@ -7,20 +7,19 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 
 import com.tcleard.tcutils.R;
-import com.tcleard.tcutils.utils.ScrollUtils;
+import com.tcleard.tcutils.utils.TCScrollUtils;
 
 /**
  * Created by geckoz on 25/03/16.
  */
-public class TCHeaderScrollView extends FrameLayout implements ScrollUtils.OnScrollListener, ScrollUtils.OnScrollDirectionChangedListener {
+public class TCHeaderScrollView extends FrameLayout implements TCScrollUtils.OnScrollListener, TCScrollUtils.OnScrollDirectionChangedListener {
 
     private FrameLayout _header;
     private TCScrollView _scrollView;
 
-    private ScrollUtils.ScrollDirection _scrollDirection = ScrollUtils.ScrollDirection.UP;
+    private TCScrollUtils.ScrollDirection _scrollDirection = TCScrollUtils.ScrollDirection.UP;
     private int _baseHeight;
     private int _minHeight;
     private int _startScrollY;
@@ -108,7 +107,7 @@ public class TCHeaderScrollView extends FrameLayout implements ScrollUtils.OnScr
     }
 
     @Override
-    public void onScrollDirectionChanged(View view, ScrollUtils.ScrollDirection scrollDirection) {
+    public void onScrollDirectionChanged(View view, TCScrollUtils.ScrollDirection scrollDirection) {
         _scrollDirection = scrollDirection;
         _startScrollY = _scrollView.getScrollY();
     }

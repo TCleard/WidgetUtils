@@ -2,24 +2,27 @@ package com.tcleard.tcutils.widget.ScrollView;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
-import android.view.animation.OvershootInterpolator;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.Interpolator;
 import android.view.animation.Transformation;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.tcleard.tcutils.R;
-import com.tcleard.tcutils.utils.ScrollUtils;
+import com.tcleard.tcutils.utils.TCScrollUtils;
+import com.tcleard.tcutils.utils.TCStretchyInterpolator;
 
 /**
  * Created by geckoz on 14/03/16.
  */
-public class TCParallaxScrollView extends FrameLayout implements View.OnTouchListener, ScrollUtils.OnScrollListener {
+public class TCParallaxScrollView extends FrameLayout implements View.OnTouchListener, TCScrollUtils.OnScrollListener {
 
     private static final String TAG = TCParallaxScrollView.class.getName();
 
@@ -32,8 +35,9 @@ public class TCParallaxScrollView extends FrameLayout implements View.OnTouchLis
     private boolean _isFirstOnLayout = true;
     private float _startY;
     private boolean _stretching = false;
-
-    private static final float PARALLAX_FACTOR = 3f;
+    private int _animationDuration = 300;
+    private Interpolator _interpolator = new DecelerateInterpolator();
+    private float _resistance = 1.7f;
 
     public TCParallaxScrollView(Context context) {
         super(context);
@@ -57,6 +61,12 @@ public class TCParallaxScrollView extends FrameLayout implements View.OnTouchLis
     }
 
     private void init(AttributeSet attrs) {
+        TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.TCParallaxScrollView, 0, 0);
+        if (a != null) {
+            _resistance = a.getFloat(R.styleable.TCParallaxScrollView_resistance, _resistance);
+            _animationDuration = a.getInt(R.styleable.TCParallaxScrollView_backAnimationDuration, _animationDuration);
+            _interpolator = TCStretchyInterpolator.getInterpolator(a.getInt(R.styleable.TCParallaxScrollView_backAnimationInterpolator, TCStretchyInterpolator.LINEAR.value));
+        }
         View.inflate(getContext(), R.layout.tc_parallax_scroll_view, this);
         _parallaxView = (FrameLayout) findViewById(R.id.parallax);
         _scrollView = (TCScrollView) findViewById(R.id.scroll);
@@ -97,9 +107,9 @@ public class TCParallaxScrollView extends FrameLayout implements View.OnTouchLis
     @Override
     public void onScroll(View view, int scrollY) {
         if (scrollY < _baseHeight) {
-            _parallaxView.setY(-(scrollY / PARALLAX_FACTOR));
+            _parallaxView.setY(-(scrollY / _resistance));
         } else if (scrollY > _baseHeight) {
-            _parallaxView.setY(-(_baseHeight / PARALLAX_FACTOR));
+            _parallaxView.setY(-(_baseHeight / _resistance));
         } else {
             _parallaxView.setY(0);
         }
@@ -121,7 +131,7 @@ public class TCParallaxScrollView extends FrameLayout implements View.OnTouchLis
                     _startY = event.getY();
                 }
                 if (_stretching) {
-                    resizeHeader(Math.round(_baseHeight + ((event.getY() - _startY) / PARALLAX_FACTOR)));
+                    resizeHeader(Math.round(_baseHeight + ((event.getY() - _startY) / _resistance)));
                     return true;
                 }
                 break;
@@ -150,8 +160,8 @@ public class TCParallaxScrollView extends FrameLayout implements View.OnTouchLis
                 return true;
             }
         };
-        animation.setInterpolator(new OvershootInterpolator());
-        animation.setDuration(600);
+        animation.setInterpolator(_interpolator);
+        animation.setDuration(_animationDuration);
         _parallaxView.startAnimation(animation);
     }
 

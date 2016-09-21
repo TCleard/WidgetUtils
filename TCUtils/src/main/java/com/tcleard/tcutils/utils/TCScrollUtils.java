@@ -10,7 +10,7 @@ import com.tcleard.tcutils.widget.ListView.TCListView;
 /**
  * Created by geckoz on 13/03/16.
  */
-public class ScrollUtils {
+public class TCScrollUtils {
 
     /* ScrollListener */
 
